@@ -7,8 +7,6 @@ import scala.swing.SimpleSwingApplication
 
 object ScalaShell extends SimpleSwingApplication {
   val userName = System.getProperty("user.name")
-  
-  var currentDir = System.getProperty("user.dir")
 
   def top = new MainFrame {
     title = "scala-shell"
