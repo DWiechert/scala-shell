@@ -22,9 +22,14 @@ class InputArea(lineStart: String) extends TextArea {
       val input = line(1).split(" ")
       val command = input(0)
       val arguments = input.drop(1)
+      var toAppend:Any = None
       command match {
-        case "echo" => new Echo(this).run(arguments)
+        case "echo" => toAppend = new Echo().run(arguments)
         case "exit" => new Exit().run(arguments)
+      }
+      
+      toAppend match {
+        case x: String => append(toAppend.toString())
       }
       append(lineStart)
     }

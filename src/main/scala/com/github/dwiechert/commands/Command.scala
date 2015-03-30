@@ -6,11 +6,12 @@ sealed abstract class Command {
   def run(line: Array[String]): Any
 }
 
-case class Echo(inputArea: InputArea) extends Command {
+case class Echo() extends Command {
   def run(line: Array[String]): Any = {
-    line.foreach { l => inputArea.append(l + " ") }
-    inputArea.append(System.getProperty("line.separator"))
-    None
+    val builder = new StringBuilder
+    line.foreach { l => builder.append(l + " ") }
+    builder.append(System.getProperty("line.separator"))
+    builder.toString()
   }
 }
 
