@@ -13,3 +13,9 @@ case class Echo(inputArea: InputArea) extends Command {
     None
   }
 }
+
+case class Exit() extends Command {
+  def run(line: Array[String]): Any = {
+    System.exit(0)
+  }
+}

@@ -7,6 +7,7 @@ import scala.swing.event.Key
 import scala.swing.event.KeyReleased
 
 import com.github.dwiechert.commands.Echo
+import com.github.dwiechert.commands.Exit
 
 class InputArea(lineStart: String) extends TextArea {
   rows = 40
@@ -23,6 +24,7 @@ class InputArea(lineStart: String) extends TextArea {
       val arguments = input.drop(1)
       command match {
         case "echo" => new Echo(this).run(arguments)
+        case "exit" => new Exit().run(arguments)
       }
       append(lineStart)
     }
