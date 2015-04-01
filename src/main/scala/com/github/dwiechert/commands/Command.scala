@@ -4,7 +4,7 @@ import java.io.File
 
 sealed abstract class Command {
   protected[this] val NEWLINE = System.getProperty("line.separator")
-  
+
   var currentDir = System.getProperty("user.dir")
   def run(line: Array[String]): Any
 }
@@ -38,6 +38,19 @@ case class Pwd() extends Command {
     val builder = new StringBuilder
     builder.append(new File(currentDir).getAbsolutePath)
     builder.append(NEWLINE)
+    builder.toString()
+  }
+}
+
+case class Ls() extends Command {
+  def run(line: Array[String]): Any = {
+    val directory = if (line.isEmpty) currentDir else line(0)
+    val builder = new StringBuilder
+    for (file <- new File(directory).listFiles()) {
+      builder.append(file.getName)
+      if (file.isDirectory()) builder.append(File.separatorChar)
+      builder.append(NEWLINE)
+    }
     builder.toString()
   }
 }

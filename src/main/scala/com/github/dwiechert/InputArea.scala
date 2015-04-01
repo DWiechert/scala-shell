@@ -6,6 +6,7 @@ import scala.swing.event.Key
 import scala.swing.event.KeyReleased
 import com.github.dwiechert.commands.Echo
 import com.github.dwiechert.commands.Exit
+import com.github.dwiechert.commands.Ls
 import com.github.dwiechert.commands.Pwd
 import com.github.dwiechert.commands.Invalid
 
@@ -27,7 +28,8 @@ class InputArea(lineStart: String) extends TextArea {
         case "exit" => new Exit().run(null)
         case "echo" => toAppend = new Echo().run(arguments)
         case "pwd"  => toAppend = new Pwd().run(arguments)
-        case _ => toAppend = new Invalid(command).run(null)
+        case "ls"   => toAppend = new Ls().run(arguments)
+        case _      => toAppend = new Invalid(command).run(null)
       }
 
       toAppend match {
